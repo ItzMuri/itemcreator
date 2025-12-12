@@ -110,6 +110,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
             >
               <option value="item">Item</option>
               <option value="weapon">Weapon</option>
+              <option value="ammo">Ammo</option>
             </select>
           </div>
 
@@ -126,6 +127,54 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
             />
           </div>
         </div>
+
+        {/* Weapon/Ammo specific fields */}
+        {(itemData.type === 'weapon' || itemData.type === 'ammo') && (
+          <div className="grid md:grid-cols-2 gap-4">
+            {itemData.type === 'weapon' && (
+              <>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Ammo Name
+                  </label>
+                  <input
+                    type="text"
+                    value={itemData.ammoname || ''}
+                    onChange={(e) => updateField('ammoname', e.target.value)}
+                    placeholder="e.g., AMMO_PISTOL"
+                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Damage Reason
+                  </label>
+                  <input
+                    type="text"
+                    value={itemData.damagereason || ''}
+                    onChange={(e) => updateField('damagereason', e.target.value)}
+                    placeholder="e.g., Pistol"
+                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  />
+                </div>
+              </>
+            )}
+            {itemData.type === 'ammo' && (
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Ammo Type
+                </label>
+                <input
+                  type="text"
+                  value={itemData.ammotype || ''}
+                  onChange={(e) => updateField('ammotype', e.target.value)}
+                  placeholder="e.g., AMMO_PISTOL"
+                  className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+              </div>
+            )}
+          </div>
+        )}
 
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -229,6 +278,18 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
           <div className="flex items-center space-x-2">
             <input
               type="checkbox"
+              id="durability"
+              checked={itemData.durability || false}
+              onChange={(e) => updateField('durability', e.target.checked)}
+              className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
+            />
+            <label htmlFor="durability" className="text-sm text-gray-300">
+              Enable Durability (ox_inventory)
+            </label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <input
+              type="checkbox"
               id="decay"
               checked={itemData.decay}
               onChange={(e) => updateField('decay', e.target.checked)}
@@ -269,6 +330,76 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               />
             </div>
           )}
+        </div>
+
+        {/* Disable Controls (ox_inventory) */}
+        <div className="space-y-4">
+          <h4 className="text-md font-medium text-white">Disable Controls (ox_inventory)</h4>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="disableMove"
+                checked={itemData.client.disable?.move || false}
+                onChange={(e) => updateNestedField('client', 'disable', {
+                  ...itemData.client.disable,
+                  move: e.target.checked
+                })}
+                className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
+              />
+              <label htmlFor="disableMove" className="text-sm text-gray-300">
+                Disable Movement
+              </label>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="disableCar"
+                checked={itemData.client.disable?.car || false}
+                onChange={(e) => updateNestedField('client', 'disable', {
+                  ...itemData.client.disable,
+                  car: e.target.checked
+                })}
+                className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
+              />
+              <label htmlFor="disableCar" className="text-sm text-gray-300">
+                Disable Car Controls
+              </label>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="disableCombat"
+                checked={itemData.client.disable?.combat || false}
+                onChange={(e) => updateNestedField('client', 'disable', {
+                  ...itemData.client.disable,
+                  combat: e.target.checked
+                })}
+                className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
+              />
+              <label htmlFor="disableCombat" className="text-sm text-gray-300">
+                Disable Combat
+              </label>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="disableMouse"
+                checked={itemData.client.disable?.mouse || false}
+                onChange={(e) => updateNestedField('client', 'disable', {
+                  ...itemData.client.disable,
+                  mouse: e.target.checked
+                })}
+                className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
+              />
+              <label htmlFor="disableMouse" className="text-sm text-gray-300">
+                Disable Mouse
+              </label>
+            </div>
+          </div>
         </div>
       </div>
 

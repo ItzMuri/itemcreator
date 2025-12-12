@@ -2,13 +2,17 @@ export interface ItemData {
   name: string;
   label: string;
   weight: number;
-  type: 'item' | 'weapon';
+  type: 'item' | 'weapon' | 'ammo';
   image: string;
   unique: boolean;
   useable: boolean;
   shouldClose: boolean;
   combinable: any;
   description: string;
+  durability?: boolean;
+  ammoname?: string;
+  ammotype?: string;
+  damagereason?: string;
   client: {
     image: string;
     export: string;
@@ -20,6 +24,12 @@ export interface ItemData {
     anim?: string;
     prop?: string;
     usetime?: number;
+    disable?: {
+      move?: boolean;
+      car?: boolean;
+      combat?: boolean;
+      mouse?: boolean;
+    };
   };
   server: {
     export: string;

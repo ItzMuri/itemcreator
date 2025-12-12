@@ -22,7 +22,8 @@ function App() {
       status: {},
       anim: '',
       prop: '',
-      usetime: undefined
+      usetime: undefined,
+      disable: {}
     },
     server: {
       export: '',

@@ -15,15 +15,45 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
     code += `\t\tlabel = '${itemData.label}',\n`;
     code += `\t\tweight = ${itemData.weight},\n`;
     
+    // Add stack if false
+    if (!itemData.stack) {
+      code += `\t\tstack = false,\n`;
+    }
+    
+    // Add close if false
+    if (!itemData.close) {
+      code += `\t\tclose = false,\n`;
+    }
+    
+    // Add durability if enabled
+    if (itemData.durability) {
+      code += `\t\tdurability = true,\n`;
+    }
+    
+    // Add weapon/ammo specific fields
+    if (itemData.type === 'weapon') {
+      if (itemData.ammoname) {
+        code += `\t\tammoname = '${itemData.ammoname}',\n`;
+      }
+      if (itemData.damagereason) {
+        code += `\t\tdamagereason = '${itemData.damagereason}',\n`;
+      }
+    }
+    
+    if (itemData.type === 'ammo' && itemData.ammotype) {
+      code += `\t\tammotype = '${itemData.ammotype}',\n`;
+    }
+    
     // Add degrade if set
     if (itemData.degrade > 0) {
       code += `\t\tdegrade = ${itemData.degrade},\n`;
     }
     
     // Client section
-    const hasClientData = itemData.image || itemData.client.export || itemData.client.status?.hunger || 
-                         itemData.client.status?.thirst || itemData.client.status?.stress || 
-                         itemData.client.anim || itemData.client.prop || itemData.client.usetime;
+    const hasStatus = itemData.client.status?.hunger || itemData.client.status?.thirst || itemData.client.status?.stress;
+    const hasDisable = itemData.client.disable?.move || itemData.client.disable?.car || itemData.client.disable?.combat || itemData.client.disable?.mouse;
+    const hasClientData = itemData.image || itemData.client.export || hasStatus || 
+                         itemData.client.anim || itemData.client.prop || itemData.client.usetime || hasDisable;
     
     if (hasClientData) {
       code += `\t\tclient = {\n`;
@@ -33,7 +63,6 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
       }
       
       // Status effects
-      const hasStatus = itemData.client.status?.hunger || itemData.client.status?.thirst || itemData.client.status?.stress;
       if (hasStatus) {
         code += `\t\t\tstatus = {`;
         const statusParts = [];
@@ -53,6 +82,17 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
       
       if (itemData.client.usetime) {
         code += `\t\t\tusetime = ${itemData.client.usetime},\n`;
+      }
+      
+      // Disable controls
+      if (hasDisable) {
+        code += `\t\t\tdisable = {`;
+        const disableParts = [];
+        if (itemData.client.disable?.move) disableParts.push(' move = true');
+        if (itemData.client.disable?.car) disableParts.push(' car = true');
+        if (itemData.client.disable?.combat) disableParts.push(' combat = true');
+        if (itemData.client.disable?.mouse) disableParts.push(' mouse = true');
+        code += disableParts.join(',') + ' },\n';
       }
       
       if (itemData.client.export) {
