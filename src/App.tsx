@@ -35,7 +35,8 @@ function App() {
     consume: 0,
     decay: false,
     degrade: 0,
-    delete: false
+    delete: false,
+    qbDecay: undefined
   });
 
   const [activeTab, setActiveTab] = useState<'ox' | 'qb'>('ox');

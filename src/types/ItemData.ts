@@ -43,7 +43,8 @@ export interface ItemData {
   stack: boolean;
   close: boolean;
   consume: number;
-  decay: boolean | number;
+  decay: boolean;
   degrade: number;
   delete: boolean;
+  qbDecay?: number;
 }

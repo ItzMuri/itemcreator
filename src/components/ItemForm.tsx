@@ -291,12 +291,12 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
             <input
               type="checkbox"
               id="decay"
-              checked={itemData.decay}
+              checked={itemData.decay || false}
               onChange={(e) => updateField('decay', e.target.checked)}
               className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
             />
             <label htmlFor="decay" className="text-sm text-gray-300">
-              Enable Decay
+              Enable Decay (ox_inventory)
             </label>
           </div>
 
@@ -314,11 +314,11 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-3 gap-4">
           {itemData.decay && (
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Decay Value (QB) / Degrade Time (ox_inventory)
+                Degrade Time (minutes) - ox_inventory
               </label>
               <input
                 type="number"
@@ -330,6 +330,41 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               />
             </div>
           )}
+          
+          {itemData.decay && (
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Consume Amount - ox_inventory
+              </label>
+              <input
+                type="number"
+                value={itemData.consume}
+                onChange={(e) => updateField('consume', parseFloat(e.target.value) || 0)}
+                min="0"
+                step="0.1"
+                placeholder="e.g., 0.2"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+            </div>
+          )}
+        </div>
+
+        {/* QB-Core specific decay */}
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">
+              Decay Value (QB-Core)
+            </label>
+            <input
+              type="number"
+              value={itemData.qbDecay || ''}
+              onChange={(e) => updateField('qbDecay', parseFloat(e.target.value) || undefined)}
+              min="0"
+              step="0.1"
+              placeholder="e.g., 3.0"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            />
+          </div>
         </div>
 
         {/* Disable Controls (ox_inventory) */}

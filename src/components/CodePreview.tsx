@@ -45,8 +45,18 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
     }
     
     // Add degrade if set
-    if (itemData.degrade > 0) {
+    if (itemData.decay && itemData.degrade > 0) {
       code += `\t\tdegrade = ${itemData.degrade},\n`;
+    }
+    
+    // Add consume if set
+    if (itemData.decay && itemData.consume > 0) {
+      code += `\t\tconsume = ${itemData.consume}, -- amount to consume per use\n`;
+    }
+    
+    // Add decay if enabled
+    if (itemData.decay) {
+      code += `\t\tdecay = true,\n`;
     }
     
     // Client section
@@ -161,8 +171,8 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
       qbItem += `, description = '${itemData.description}'`;
     }
     
-    if (itemData.decay && itemData.degrade > 0) {
-      qbItem += `, "decay" = ${itemData.degrade}`;
+    if (itemData.qbDecay && itemData.qbDecay > 0) {
+      qbItem += `, "decay" = ${itemData.qbDecay}`;
     }
     
     if (itemData.delete) {
