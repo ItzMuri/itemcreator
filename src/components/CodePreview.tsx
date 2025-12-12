@@ -162,11 +162,11 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
     }
     
     if (itemData.decay && itemData.degrade > 0) {
-      qbItem += `, ["decay"] = ${itemData.degrade}`;
+      qbItem += `, "decay" = ${itemData.degrade}`;
     }
     
     if (itemData.delete) {
-      qbItem += `, ["delete"] = true`;
+      qbItem += `, "delete" = true`;
     }
     
     qbItem += ' },';
