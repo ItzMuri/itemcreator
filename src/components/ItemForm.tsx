@@ -475,12 +475,12 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
         <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Animation (ox_inventory)
+              Animation (ox_inventory) - Simple
             </label>
             <input
               type="text"
-              value={itemData.client.anim || ''}
-              onChange={(e) => updateNestedField('client', 'anim', e.target.value)}
+              value={typeof itemData.client.anim === 'string' ? itemData.client.anim : ''}
+              onChange={(e) => updateNestedField('client', 'anim', e.target.value || undefined)}
               placeholder="e.g., eating"
               className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
             />
@@ -488,18 +488,233 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
 
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Prop (ox_inventory)
+              Prop (ox_inventory) - Simple
             </label>
             <input
               type="text"
-              value={itemData.client.prop || ''}
-              onChange={(e) => updateNestedField('client', 'prop', e.target.value)}
+              value={typeof itemData.client.prop === 'string' ? itemData.client.prop : ''}
+              onChange={(e) => updateNestedField('client', 'prop', e.target.value || undefined)}
               placeholder="e.g., burger"
               className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
             />
           </div>
         </div>
 
+        {/* Advanced Animation Configuration */}
+        <div className="space-y-4">
+          <h4 className="text-md font-medium text-white">Advanced Animation (ox_inventory)</h4>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Animation Dictionary
+              </label>
+              <input
+                type="text"
+                value={typeof itemData.client.anim === 'object' ? itemData.client.anim?.dict || '' : ''}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value) {
+                    updateNestedField('client', 'anim', {
+                      dict: value,
+                      clip: typeof itemData.client.anim === 'object' ? itemData.client.anim?.clip || '' : ''
+                    });
+                  } else {
+                    updateNestedField('client', 'anim', undefined);
+                  }
+                }}
+                placeholder="e.g., mp_player_intdrink"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Animation Clip
+              </label>
+              <input
+                type="text"
+                value={typeof itemData.client.anim === 'object' ? itemData.client.anim?.clip || '' : ''}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (typeof itemData.client.anim === 'object') {
+                    updateNestedField('client', 'anim', {
+                      dict: itemData.client.anim.dict,
+                      clip: value
+                    });
+                  }
+                }}
+                placeholder="e.g., loop_bottle"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Advanced Prop Configuration */}
+        <div className="space-y-4">
+          <h4 className="text-md font-medium text-white">Advanced Prop (ox_inventory)</h4>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Prop Model
+              </label>
+              <input
+                type="text"
+                value={typeof itemData.client.prop === 'object' ? itemData.client.prop?.model || '' : ''}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value) {
+                    updateNestedField('client', 'prop', {
+                      model: value,
+                      bone: typeof itemData.client.prop === 'object' ? itemData.client.prop?.bone || 18905 : 18905,
+                      pos: typeof itemData.client.prop === 'object' ? itemData.client.prop?.pos || { x: 0, y: 0, z: 0 } : { x: 0, y: 0, z: 0 },
+                      rot: typeof itemData.client.prop === 'object' ? itemData.client.prop?.rot || { x: 0, y: 0, z: 0 } : { x: 0, y: 0, z: 0 }
+                    });
+                  } else {
+                    updateNestedField('client', 'prop', undefined);
+                  }
+                }}
+                placeholder="e.g., v_res_mcofcup"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Bone ID
+              </label>
+              <input
+                type="number"
+                value={typeof itemData.client.prop === 'object' ? itemData.client.prop?.bone || '' : ''}
+                onChange={(e) => {
+                  const value = parseInt(e.target.value) || 18905;
+                  if (typeof itemData.client.prop === 'object') {
+                    updateNestedField('client', 'prop', {
+                      ...itemData.client.prop,
+                      bone: value
+                    });
+                  }
+                }}
+                placeholder="18905"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          {/* Position */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">
+              Position (X, Y, Z)
+            </label>
+            <div className="grid grid-cols-3 gap-2">
+              <input
+                type="number"
+                step="0.01"
+                value={typeof itemData.client.prop === 'object' ? itemData.client.prop?.pos?.x || '' : ''}
+                onChange={(e) => {
+                  const value = parseFloat(e.target.value) || 0;
+                  if (typeof itemData.client.prop === 'object') {
+                    updateNestedField('client', 'prop', {
+                      ...itemData.client.prop,
+                      pos: { ...itemData.client.prop.pos, x: value }
+                    });
+                  }
+                }}
+                placeholder="0.14"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+              <input
+                type="number"
+                step="0.01"
+                value={typeof itemData.client.prop === 'object' ? itemData.client.prop?.pos?.y || '' : ''}
+                onChange={(e) => {
+                  const value = parseFloat(e.target.value) || 0;
+                  if (typeof itemData.client.prop === 'object') {
+                    updateNestedField('client', 'prop', {
+                      ...itemData.client.prop,
+                      pos: { ...itemData.client.prop.pos, y: value }
+                    });
+                  }
+                }}
+                placeholder="0.0"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+              <input
+                type="number"
+                step="0.01"
+                value={typeof itemData.client.prop === 'object' ? itemData.client.prop?.pos?.z || '' : ''}
+                onChange={(e) => {
+                  const value = parseFloat(e.target.value) || 0;
+                  if (typeof itemData.client.prop === 'object') {
+                    updateNestedField('client', 'prop', {
+                      ...itemData.client.prop,
+                      pos: { ...itemData.client.prop.pos, z: value }
+                    });
+                  }
+                }}
+                placeholder="0.07"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          {/* Rotation */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">
+              Rotation (X, Y, Z)
+            </label>
+            <div className="grid grid-cols-3 gap-2">
+              <input
+                type="number"
+                step="0.01"
+                value={typeof itemData.client.prop === 'object' ? itemData.client.prop?.rot?.x || '' : ''}
+                onChange={(e) => {
+                  const value = parseFloat(e.target.value) || 0;
+                  if (typeof itemData.client.prop === 'object') {
+                    updateNestedField('client', 'prop', {
+                      ...itemData.client.prop,
+                      rot: { ...itemData.client.prop.rot, x: value }
+                    });
+                  }
+                }}
+                placeholder="-119.7"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+              <input
+                type="number"
+                step="0.01"
+                value={typeof itemData.client.prop === 'object' ? itemData.client.prop?.rot?.y || '' : ''}
+                onChange={(e) => {
+                  const value = parseFloat(e.target.value) || 0;
+                  if (typeof itemData.client.prop === 'object') {
+                    updateNestedField('client', 'prop', {
+                      ...itemData.client.prop,
+                      rot: { ...itemData.client.prop.rot, y: value }
+                    });
+                  }
+                }}
+                placeholder="-54.56"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+              <input
+                type="number"
+                step="0.01"
+                value={typeof itemData.client.prop === 'object' ? itemData.client.prop?.rot?.z || '' : ''}
+                onChange={(e) => {
+                  const value = parseFloat(e.target.value) || 0;
+                  if (typeof itemData.client.prop === 'object') {
+                    updateNestedField('client', 'prop', {
+                      ...itemData.client.prop,
+                      rot: { ...itemData.client.prop.rot, z: value }
+                    });
+                  }
+                }}
+                placeholder="7.22"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+        </div>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">

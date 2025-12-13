@@ -20,8 +20,8 @@ function App() {
       image: '',
       export: '',
       status: {},
-      anim: '',
-      prop: '',
+      anim: undefined,
+      prop: undefined,
       usetime: undefined,
       disable: {}
     },

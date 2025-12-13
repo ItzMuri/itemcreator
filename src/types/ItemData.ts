@@ -21,8 +21,24 @@ export interface ItemData {
       thirst?: number;
       stress?: number;
     };
-    anim?: string;
-    prop?: string;
+    anim?: string | {
+      dict: string;
+      clip: string;
+    };
+    prop?: string | {
+      model: string;
+      bone: number;
+      pos: {
+        x: number;
+        y: number;
+        z: number;
+      };
+      rot: {
+        x: number;
+        y: number;
+        z: number;
+      };
+    };
     usetime?: number;
     disable?: {
       move?: boolean;

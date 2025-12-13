@@ -83,11 +83,24 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
       }
       
       if (itemData.client.anim) {
-        code += `\t\t\tanim = '${itemData.client.anim}',\n`;
+        if (typeof itemData.client.anim === 'string') {
+          code += `\t\t\tanim = '${itemData.client.anim}',\n`;
+        } else {
+          code += `\t\t\tanim = { dict = "${itemData.client.anim.dict}", clip = "${itemData.client.anim.clip}" },\n`;
+        }
       }
       
       if (itemData.client.prop) {
-        code += `\t\t\tprop = '${itemData.client.prop}',\n`;
+        if (typeof itemData.client.prop === 'string') {
+          code += `\t\t\tprop = '${itemData.client.prop}',\n`;
+        } else {
+          code += `\t\t\tprop = {\n`;
+          code += `\t\t\t\tmodel = '${itemData.client.prop.model}',\n`;
+          code += `\t\t\t\tbone = ${itemData.client.prop.bone},\n`;
+          code += `\t\t\t\tpos = vec3(${itemData.client.prop.pos.x}, ${itemData.client.prop.pos.y}, ${itemData.client.prop.pos.z}),\n`;
+          code += `\t\t\t\trot = vec3(${itemData.client.prop.rot.x}, ${itemData.client.prop.rot.y}, ${itemData.client.prop.rot.z})\n`;
+          code += `\t\t\t},\n`;
+        }
       }
       
       if (itemData.client.usetime) {
