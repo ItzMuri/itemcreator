@@ -46,6 +46,7 @@ export interface ItemData {
       combat?: boolean;
       mouse?: boolean;
     };
+    notification?: string;
   };
   server: {
     export: string;

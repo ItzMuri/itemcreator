@@ -23,7 +23,8 @@ function App() {
       anim: undefined,
       prop: undefined,
       usetime: undefined,
-      disable: {}
+      disable: {},
+      notification: undefined
     },
     server: {
       export: '',

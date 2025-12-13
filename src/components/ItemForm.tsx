@@ -8,6 +8,44 @@ interface ItemFormProps {
 }
 
 const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
+  const applyDrinkPreset = () => {
+    setItemData(prev => ({
+      ...prev,
+      client: {
+        ...prev.client,
+        status: { thirst: 200000 },
+        anim: { dict: 'mp_player_intdrink', clip: 'loop_bottle' },
+        prop: { 
+          model: 'prop_ld_can_01', 
+          bone: 18905,
+          pos: { x: 0.01, y: 0.01, z: 0.06 }, 
+          rot: { x: 5.0, y: 5.0, z: -180.5 } 
+        },
+        usetime: 2500,
+        notification: 'You quenched your thirst with a sprunk'
+      }
+    }));
+  };
+
+  const applyFoodPreset = () => {
+    setItemData(prev => ({
+      ...prev,
+      client: {
+        ...prev.client,
+        status: { hunger: 200000 },
+        anim: { dict: 'mp_player_inteat', clip: 'loop_eat' },
+        prop: { 
+          model: 'prop_cs_burger_01', 
+          bone: 18905,
+          pos: { x: 0.01, y: 0.01, z: 0.06 }, 
+          rot: { x: 5.0, y: 5.0, z: -180.5 } 
+        },
+        usetime: 3000,
+        notification: 'You enjoyed a delicious burger'
+      }
+    }));
+  };
+
   const updateField = (field: string, value: any) => {
     setItemData(prev => ({
       ...prev,
@@ -444,6 +482,28 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
           Export Configuration
         </h3>
 
+        {/* Preset Buttons */}
+        <div className="space-y-3">
+          <h4 className="text-md font-medium text-white">Quick Presets</h4>
+          <div className="flex flex-col sm:flex-row gap-2">
+            <button
+              onClick={applyDrinkPreset}
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm"
+            >
+              🥤 Apply Drink Preset
+            </button>
+            <button
+              onClick={applyFoodPreset}
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors text-sm"
+            >
+              🍔 Apply Food Preset
+            </button>
+          </div>
+          <p className="text-xs text-gray-400">
+            These presets will configure animations, props, status effects, and use times for common consumables.
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -738,6 +798,19 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               value={itemData.server.test || ''}
               onChange={(e) => updateNestedField('server', 'test', e.target.value)}
               placeholder="e.g., what an amazingly delicious burger"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">
+              Notification Message (ox_inventory)
+            </label>
+            <input
+              type="text"
+              value={itemData.client.notification || ''}
+              onChange={(e) => updateNestedField('client', 'notification', e.target.value)}
+              placeholder="e.g., You quenched your thirst"
               className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
