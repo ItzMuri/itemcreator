@@ -66,7 +66,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               value={itemData.name}
               onChange={(e) => updateField('name', e.target.value)}
               placeholder="e.g., water_bottle"
-              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
           
@@ -79,12 +79,12 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               value={itemData.label}
               onChange={(e) => updateField('label', e.target.value)}
               placeholder="e.g., Water Bottle"
-              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Weight
@@ -95,7 +95,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               onChange={(e) => updateField('weight', parseFloat(e.target.value) || 0)}
               min="0"
               step="0.1"
-              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
 
@@ -106,7 +106,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
             <select
               value={itemData.type}
               onChange={(e) => updateField('type', e.target.value)}
-              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             >
               <option value="item">Item</option>
               <option value="weapon">Weapon</option>
@@ -123,14 +123,14 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               value={itemData.consume}
               onChange={(e) => updateField('consume', parseInt(e.target.value) || 0)}
               min="0"
-              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
         </div>
 
         {/* Weapon/Ammo specific fields */}
         {(itemData.type === 'weapon' || itemData.type === 'ammo') && (
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {itemData.type === 'weapon' && (
               <>
                 <div>
@@ -142,7 +142,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                     value={itemData.ammoname || ''}
                     onChange={(e) => updateField('ammoname', e.target.value)}
                     placeholder="e.g., AMMO_PISTOL"
-                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
                   />
                 </div>
                 <div>
@@ -154,7 +154,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                     value={itemData.damagereason || ''}
                     onChange={(e) => updateField('damagereason', e.target.value)}
                     placeholder="e.g., Pistol"
-                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
                   />
                 </div>
               </>
@@ -169,7 +169,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   value={itemData.ammotype || ''}
                   onChange={(e) => updateField('ammotype', e.target.value)}
                   placeholder="e.g., AMMO_PISTOL"
-                  className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
                 />
               </div>
             )}
@@ -185,7 +185,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
             value={itemData.image}
             onChange={(e) => updateField('image', e.target.value)}
             placeholder="e.g., water_bottle.png"
-            className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
           />
         </div>
 
@@ -198,7 +198,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
             onChange={(e) => updateField('description', e.target.value)}
             placeholder="Item description..."
             rows={3}
-            className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
           />
         </div>
       </div>
@@ -209,7 +209,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
           Item Properties
         </h3>
 
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex items-center space-x-2">
             <input
               type="checkbox"
@@ -218,7 +218,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               onChange={(e) => updateField('useable', e.target.checked)}
               className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
             />
-            <label htmlFor="useable" className="text-sm text-gray-300">
+            <label htmlFor="useable" className="text-xs sm:text-sm text-gray-300">
               Useable
             </label>
           </div>
@@ -231,7 +231,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               onChange={(e) => updateField('unique', e.target.checked)}
               className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
             />
-            <label htmlFor="unique" className="text-sm text-gray-300">
+            <label htmlFor="unique" className="text-xs sm:text-sm text-gray-300">
               Unique
             </label>
           </div>
@@ -244,7 +244,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               onChange={(e) => updateField('shouldClose', e.target.checked)}
               className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
             />
-            <label htmlFor="shouldClose" className="text-sm text-gray-300">
+            <label htmlFor="shouldClose" className="text-xs sm:text-sm text-gray-300">
               Should Close (QB)
             </label>
           </div>
@@ -257,7 +257,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               onChange={(e) => updateField('stack', e.target.checked)}
               className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
             />
-            <label htmlFor="stack" className="text-sm text-gray-300">
+            <label htmlFor="stack" className="text-xs sm:text-sm text-gray-300">
               Stackable (ox_inventory)
             </label>
           </div>
@@ -270,7 +270,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               onChange={(e) => updateField('close', e.target.checked)}
               className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
             />
-            <label htmlFor="close" className="text-sm text-gray-300">
+            <label htmlFor="close" className="text-xs sm:text-sm text-gray-300">
               Close Inventory (ox_inventory)
             </label>
           </div>
@@ -283,7 +283,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               onChange={(e) => updateField('durability', e.target.checked)}
               className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
             />
-            <label htmlFor="durability" className="text-sm text-gray-300">
+            <label htmlFor="durability" className="text-xs sm:text-sm text-gray-300">
               Enable Durability (ox_inventory)
             </label>
           </div>
@@ -295,7 +295,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               onChange={(e) => updateField('decay', e.target.checked)}
               className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
             />
-            <label htmlFor="decay" className="text-sm text-gray-300">
+            <label htmlFor="decay" className="text-xs sm:text-sm text-gray-300">
               Enable Decay (ox_inventory)
             </label>
           </div>
@@ -308,13 +308,13 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               onChange={(e) => updateField('delete', e.target.checked)}
               className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
             />
-            <label htmlFor="delete" className="text-sm text-gray-300">
+            <label htmlFor="delete" className="text-xs sm:text-sm text-gray-300">
               Delete on Use (QB)
             </label>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {itemData.decay && (
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -326,7 +326,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                 onChange={(e) => updateField('degrade', parseFloat(e.target.value) || 0)}
                 min="0"
                 step="0.1"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
               />
             </div>
           )}
@@ -343,14 +343,14 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                 min="0"
                 step="0.1"
                 placeholder="e.g., 0.2"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
               />
             </div>
           )}
         </div>
 
         {/* QB-Core specific decay */}
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Decay Value (QB-Core)
@@ -362,7 +362,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               min="0"
               step="0.1"
               placeholder="e.g., 3.0"
-              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
         </div>
@@ -370,7 +370,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
         {/* Disable Controls (ox_inventory) */}
         <div className="space-y-4">
           <h4 className="text-md font-medium text-white">Disable Controls (ox_inventory)</h4>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex items-center space-x-2">
               <input
                 type="checkbox"
@@ -382,7 +382,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                 })}
                 className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
               />
-              <label htmlFor="disableMove" className="text-sm text-gray-300">
+              <label htmlFor="disableMove" className="text-xs sm:text-sm text-gray-300">
                 Disable Movement
               </label>
             </div>
@@ -398,7 +398,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                 })}
                 className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
               />
-              <label htmlFor="disableCar" className="text-sm text-gray-300">
+              <label htmlFor="disableCar" className="text-xs sm:text-sm text-gray-300">
                 Disable Car Controls
               </label>
             </div>
@@ -414,7 +414,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                 })}
                 className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
               />
-              <label htmlFor="disableCombat" className="text-sm text-gray-300">
+              <label htmlFor="disableCombat" className="text-xs sm:text-sm text-gray-300">
                 Disable Combat
               </label>
             </div>
@@ -430,7 +430,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                 })}
                 className="w-4 h-4 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500"
               />
-              <label htmlFor="disableMouse" className="text-sm text-gray-300">
+              <label htmlFor="disableMouse" className="text-xs sm:text-sm text-gray-300">
                 Disable Mouse
               </label>
             </div>
@@ -444,7 +444,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
           Export Configuration
         </h3>
 
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Client Export
@@ -454,7 +454,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               value={itemData.client.export}
               onChange={(e) => updateNestedField('client', 'export', e.target.value)}
               placeholder="e.g., my-script.useItem"
-              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
 
@@ -467,12 +467,12 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               value={itemData.server.export}
               onChange={(e) => updateNestedField('server', 'export', e.target.value)}
               placeholder="e.g., my-script.useItem"
-              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Animation (ox_inventory) - Simple
@@ -482,7 +482,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               value={typeof itemData.client.anim === 'string' ? itemData.client.anim : ''}
               onChange={(e) => updateNestedField('client', 'anim', e.target.value || undefined)}
               placeholder="e.g., eating"
-              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
 
@@ -495,7 +495,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               value={typeof itemData.client.prop === 'string' ? itemData.client.prop : ''}
               onChange={(e) => updateNestedField('client', 'prop', e.target.value || undefined)}
               placeholder="e.g., burger"
-              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
         </div>
@@ -503,7 +503,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
         {/* Advanced Animation Configuration */}
         <div className="space-y-4">
           <h4 className="text-md font-medium text-white">Advanced Animation (ox_inventory)</h4>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
                 Animation Dictionary
@@ -523,7 +523,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   }
                 }}
                 placeholder="e.g., mp_player_intdrink"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
               />
             </div>
 
@@ -544,7 +544,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   }
                 }}
                 placeholder="e.g., loop_bottle"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
               />
             </div>
           </div>
@@ -553,7 +553,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
         {/* Advanced Prop Configuration */}
         <div className="space-y-4">
           <h4 className="text-md font-medium text-white">Advanced Prop (ox_inventory)</h4>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
                 Prop Model
@@ -575,7 +575,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   }
                 }}
                 placeholder="e.g., v_res_mcofcup"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
               />
             </div>
 
@@ -596,7 +596,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   }
                 }}
                 placeholder="18905"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
               />
             </div>
           </div>
@@ -606,7 +606,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Position (X, Y, Z)
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-1 sm:gap-2">
               <input
                 type="number"
                 step="0.01"
@@ -621,7 +621,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   }
                 }}
                 placeholder="0.14"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-2 sm:px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-xs sm:text-base"
               />
               <input
                 type="number"
@@ -637,7 +637,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   }
                 }}
                 placeholder="0.0"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-2 sm:px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-xs sm:text-base"
               />
               <input
                 type="number"
@@ -653,7 +653,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   }
                 }}
                 placeholder="0.07"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-2 sm:px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-xs sm:text-base"
               />
             </div>
           </div>
@@ -663,7 +663,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Rotation (X, Y, Z)
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-1 sm:gap-2">
               <input
                 type="number"
                 step="0.01"
@@ -678,7 +678,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   }
                 }}
                 placeholder="-119.7"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-2 sm:px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-xs sm:text-base"
               />
               <input
                 type="number"
@@ -694,7 +694,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   }
                 }}
                 placeholder="-54.56"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-2 sm:px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-xs sm:text-base"
               />
               <input
                 type="number"
@@ -710,12 +710,12 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   }
                 }}
                 placeholder="7.22"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-2 sm:px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-xs sm:text-base"
               />
             </div>
           </div>
         </div>
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Use Time (ms) (ox_inventory)
@@ -725,7 +725,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               value={itemData.client.usetime || ''}
               onChange={(e) => updateNestedField('client', 'usetime', parseInt(e.target.value) || undefined)}
               placeholder="e.g., 2500"
-              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
 
@@ -738,14 +738,14 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
               value={itemData.server.test || ''}
               onChange={(e) => updateNestedField('server', 'test', e.target.value)}
               placeholder="e.g., what an amazingly delicious burger"
-              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
           </div>
         </div>
 
         <div className="space-y-4">
           <h4 className="text-md font-medium text-white">Status Effects (ox_inventory)</h4>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
                 Hunger
@@ -758,7 +758,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   hunger: parseInt(e.target.value) || undefined
                 })}
                 placeholder="e.g., 200000"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
               />
             </div>
 
@@ -774,7 +774,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   thirst: parseInt(e.target.value) || undefined
                 })}
                 placeholder="e.g., 150000"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
               />
             </div>
 
@@ -790,7 +790,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
                   stress: parseInt(e.target.value) || undefined
                 })}
                 placeholder="e.g., -50000"
-                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
               />
             </div>
           </div>
@@ -800,47 +800,50 @@ const ItemForm: React.FC<ItemFormProps> = ({ itemData, setItemData }) => {
       {/* Buttons Configuration (ox_inventory) */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-medium text-white border-b border-slate-600 pb-2">
+          <h3 className="text-base sm:text-lg font-medium text-white border-b border-slate-600 pb-2">
             Custom Buttons (ox_inventory)
           </h3>
           <button
             onClick={addButton}
-            className="flex items-center gap-2 px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white rounded-md text-sm transition-colors"
+            className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white rounded-md text-xs sm:text-sm transition-colors"
           >
             <Plus className="w-4 h-4" />
-            Add Button
+            <span className="hidden sm:inline">Add Button</span>
+            <span className="sm:hidden">Add</span>
           </button>
         </div>
 
         {itemData.buttons.map((button, index) => (
-          <div key={index} className="flex gap-2">
+          <div key={index} className="flex flex-col sm:flex-row gap-2">
             <input
               type="text"
               value={button.label}
               onChange={(e) => updateButton(index, 'label', e.target.value)}
               placeholder="Button Label"
-              className="flex-2 px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="flex-2 px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
             <input
               type="text"
               value={button.action}
               onChange={(e) => updateButton(index, 'action', e.target.value)}
               placeholder="Action Function"
-              className="flex-1 px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="flex-1 px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
             />
-            <input
-              type="text"
-              value={button.group || ''}
-              onChange={(e) => updateButton(index, 'group', e.target.value)}
-              placeholder="Group (optional)"
-              className="flex-1 px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-            />
-            <button
-              onClick={() => removeButton(index)}
-              className="p-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
-            >
-              <Trash2 className="w-4 h-4" />
-            </button>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={button.group || ''}
+                onChange={(e) => updateButton(index, 'group', e.target.value)}
+                placeholder="Group (optional)"
+                className="flex-1 px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm sm:text-base"
+              />
+              <button
+                onClick={() => removeButton(index)}
+                className="p-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         ))}
       </div>

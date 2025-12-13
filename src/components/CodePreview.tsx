@@ -230,10 +230,10 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
   return (
     <div className="space-y-4">
       {/* Action Buttons */}
-      <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row gap-2">
         <button
           onClick={copyToClipboard}
-          className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+          className="flex items-center justify-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors text-sm sm:text-base"
           disabled={!itemData.name || !itemData.label}
         >
           {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
@@ -242,7 +242,7 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
         
         <button
           onClick={downloadFile}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+          className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm sm:text-base"
           disabled={!itemData.name || !itemData.label}
         >
           <Download className="w-4 h-4" />
@@ -252,7 +252,7 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
 
       {/* Code Display */}
       <div className="relative">
-        <pre className="bg-slate-900 text-gray-300 p-4 rounded-lg overflow-x-auto text-sm border border-slate-700 max-h-96 overflow-y-auto">
+        <pre className="bg-slate-900 text-gray-300 p-3 sm:p-4 rounded-lg overflow-x-auto text-xs sm:text-sm border border-slate-700 max-h-80 sm:max-h-96 overflow-y-auto">
           <code>{code}</code>
         </pre>
         
@@ -267,15 +267,15 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
       </div>
 
       {/* Instructions */}
-      <div className="bg-slate-700/50 rounded-lg p-4 border border-slate-600">
+      <div className="bg-slate-700/50 rounded-lg p-3 sm:p-4 border border-slate-600">
         <h4 className="font-medium text-white mb-2">
           {activeTab === 'ox' ? 'ox_inventory' : 'qb-inventory'} Instructions:
         </h4>
-        <div className="text-sm text-gray-300 space-y-1">
+        <div className="text-xs sm:text-sm text-gray-300 space-y-1">
           {activeTab === 'ox' ? (
             <>
               <p>1. Copy the generated code above</p>
-              <p>2. Open <code className="bg-slate-800 px-1 rounded">ox_inventory/data/items.lua</code></p>
+              <p>2. Open <code className="bg-slate-800 px-1 rounded text-xs">ox_inventory/data/items.lua</code></p>
               <p>3. Add the item configuration to the items table</p>
               <p>4. Restart ox_inventory or refresh the resource</p>
               <p>5. If using custom exports, make sure your resource handles the functions</p>
@@ -283,9 +283,9 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
           ) : (
             <>
               <p>1. Copy the generated code above</p>
-              <p>2. Open <code className="bg-slate-800 px-1 rounded">qb-core/shared/items.lua</code></p>
+              <p>2. Open <code className="bg-slate-800 px-1 rounded text-xs">qb-core/shared/items.lua</code></p>
               <p>3. Add the item to the QBShared.Items table</p>
-              <p>4. Place the item image in <code className="bg-slate-800 px-1 rounded">qb-inventory/html/images/</code></p>
+              <p>4. Place the item image in <code className="bg-slate-800 px-1 rounded text-xs">qb-inventory/html/images/</code></p>
               <p>5. Restart qb-core and qb-inventory</p>
             </>
           )}
