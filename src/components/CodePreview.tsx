@@ -54,11 +54,6 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
       code += `\t\tdegrade = ${itemData.degrade},\n`;
     }
     
-    // Add consume if set
-    if (itemData.decay && itemData.consume > 0) {
-      code += `\t\tconsume = ${itemData.consume}, -- amount to consume per use\n`;
-    }
-    
     // Add decay if enabled
     if (itemData.decay) {
       code += `\t\tdecay = true,\n`;
