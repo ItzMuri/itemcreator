@@ -15,6 +15,11 @@ const CodePreview: React.FC<CodePreviewProps> = ({ itemData, activeTab }) => {
     code += `\t\tlabel = '${itemData.label}',\n`;
     code += `\t\tweight = ${itemData.weight},\n`;
     
+    // Add description if provided
+    if (itemData.description) {
+      code += `\t\tdescription = '${itemData.description}',\n`;
+    }
+    
     // Add stack if false
     if (!itemData.stack) {
       code += `\t\tstack = false,\n`;
